@@ -26,8 +26,7 @@ services:
       jyotish_api:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:80/"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD-SHELL", "pgrep nginx > /dev/null || exit 1"]
+      interval: 10s
+      timeout: 5s
       retries: 3
-      start_period: 5s
